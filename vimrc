@@ -5,7 +5,6 @@ set expandtab
 set ruler
 set softtabstop=4
 set number
-set autoindent
 
 " Plugin setup.
 call plug#begin('~/.vim/plugged')
@@ -34,6 +33,7 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_java_javac_classpath = './src'
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
 " airline config
 " let g:airline#extensions#tabline#enabled = 1
