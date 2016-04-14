@@ -3,3 +3,5 @@
     email = contact@wastevensv.com
 [push]
     default = current
+[color]
+	ui = true
