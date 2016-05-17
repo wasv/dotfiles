@@ -3,14 +3,15 @@ syntax on
 color elflord
 set expandtab
 set ruler
-set softtabstop=4
+set softtabstop=2
 set number
 
 " Plugin setup.
 call plug#begin('~/.vim/plugged')
-Plug 'artur-shaik/vim-javacomplete2'
+"Plug 'artur-shaik/vim-javacomplete2'
 Plug 'airblade/vim-rooter'
 Plug 'scrooloose/syntastic'
+Plug 'vim-scripts/asmM6502.vim'
 " Plug 'vim-airline/vim-airline'
 call plug#end()
 
@@ -21,7 +22,7 @@ autocmd FileType tex,markdown :setlocal spell
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 
 " Enable javacomplete2 on .java files.
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
+"autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 " vim-rooter configuration.
 let g:rooter_disable_map = 1
@@ -34,6 +35,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_java_javac_classpath = './src'
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': ['asm'] }
 
 " airline config
 " let g:airline#extensions#tabline#enabled = 1
@@ -44,6 +46,10 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11'
 " Custom commands.
 command Build execute "!bash .build"
 command Run   execute "!bash .build && bash .run"
+
+" Remap j/k to move accross virtual lines.
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
 " Key mappings
 nmap <Tab> :bn!<CR>

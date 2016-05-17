@@ -29,3 +29,8 @@ alias grep="grep --color"
 
 #Put bash in vi mode
 #set -o vi
+if [ -f ~/.mybashrc ]; then
+    . ~/.mybashrc
+fi
+
+shopt -s extglob
