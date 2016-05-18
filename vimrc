@@ -5,6 +5,7 @@ set expandtab
 set ruler
 set softtabstop=2
 set number
+set updatetime=500
 
 " Plugin setup.
 call plug#begin('~/.vim/plugged')
@@ -12,6 +13,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-rooter'
 Plug 'scrooloose/syntastic'
 Plug 'vim-scripts/asmM6502.vim'
+Plug 'airblade/vim-gitgutter'
 " Plug 'vim-airline/vim-airline'
 call plug#end()
 
