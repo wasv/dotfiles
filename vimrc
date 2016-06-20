@@ -1,9 +1,11 @@
 " Basic settings
 syntax on
 color elflord
+set noautoindent
 set expandtab
-set ruler
+set shiftwidth=2
 set softtabstop=2
+set ruler
 set number
 set updatetime=500
 
