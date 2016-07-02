@@ -8,6 +8,7 @@ set softtabstop=2
 set ruler
 set number
 set updatetime=500
+set backspace=indent,start
 
 " Plugin setup.
 call plug#begin('~/.vim/plugged')
