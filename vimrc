@@ -8,7 +8,7 @@ set softtabstop=2
 set ruler
 set number
 set updatetime=500
-set backspace=indent,start
+set backspace=indent,start,eol
 
 " Plugin setup.
 call plug#begin('~/.vim/plugged')
@@ -17,6 +17,7 @@ Plug 'airblade/vim-rooter'
 Plug 'scrooloose/syntastic'
 Plug 'vim-scripts/asmM6502.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'Shirk/vim-gas'
 " Plug 'vim-airline/vim-airline'
 call plug#end()
 
@@ -41,6 +42,9 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_java_javac_classpath = './src'
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': ['asm'] }
+
+" ASM Setup
+let g:asmsyntax = 'gas'
 
 " airline config
 " let g:airline#extensions#tabline#enabled = 1
