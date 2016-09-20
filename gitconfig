@@ -5,3 +5,5 @@
     default = current
 [color]
     ui = true
+[core]
+    autocrlf = input
