@@ -62,3 +62,7 @@ noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
 " Key mappings
 " nmap <Tab> :bn!<CR>
+
+" Printing
+set printheader=%{strftime(\"%c\",getftime(expand(\"%%\")))}%=%t
+set popt=syntax:n,bottom:36pt,top:36pt,right:36pt,left:36pt,number:y,paper:letter
