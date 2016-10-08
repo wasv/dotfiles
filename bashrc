@@ -21,11 +21,13 @@ alias more="less"
 export PAGER=less
 
 # Set editor to vim
+alias editor="vim"
 export EDITOR=vim
 
 # Ensure ls and grep use colors
 alias ls="ls --color"
 alias grep="grep --color"
+alias "]"="xdg-open"
 
 #Put bash in vi mode
 #set -o vi

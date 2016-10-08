@@ -8,6 +8,7 @@ set ruler
 set number
 set updatetime=500
 set backspace=indent,start,eol
+set modeline
 
 " Plugin setup.
 call plug#begin('~/.vim/plugged')
