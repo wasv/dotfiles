@@ -2,9 +2,8 @@
 syntax on
 color elflord
 set noautoindent
-set expandtab
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set tabstop=4
 set ruler
 set number
 set updatetime=500
@@ -15,14 +14,18 @@ call plug#begin('~/.vim/plugged')
 "Plug 'artur-shaik/vim-javacomplete2'
 Plug 'airblade/vim-rooter'
 Plug 'scrooloose/syntastic'
-Plug 'vim-scripts/asmM6502.vim'
+" Plug 'vim-scripts/asmM6502.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'Shirk/vim-gas'
+Plug 'vim-scripts/Smart-Tabs'
 " Plug 'vim-airline/vim-airline'
 call plug#end()
 
 " Enable spell checking on TeX and markdown files.
 autocmd FileType tex,markdown :setlocal spell
+
+" Use Python recommended indetation style.
+autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 
 " Recognize .md as markdown files.
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
