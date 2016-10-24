@@ -2,8 +2,9 @@
 syntax on
 color elflord
 set noautoindent
+set expandtab
 set shiftwidth=4
-set tabstop=4
+set softtabstop=4
 set ruler
 set number
 set updatetime=500
@@ -18,7 +19,7 @@ Plug 'scrooloose/syntastic'
 " Plug 'vim-scripts/asmM6502.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'Shirk/vim-gas'
-Plug 'vim-scripts/Smart-Tabs'
+" Plug 'vim-scripts/Smart-Tabs'
 " Plug 'vim-airline/vim-airline'
 call plug#end()
 
