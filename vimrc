@@ -19,12 +19,13 @@ Plug 'scrooloose/syntastic'
 " Plug 'vim-scripts/asmM6502.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'Shirk/vim-gas'
+Plug 'davidhalter/jedi-vim'
 " Plug 'vim-scripts/Smart-Tabs'
 " Plug 'vim-airline/vim-airline'
 call plug#end()
 
 " Enable spell checking on TeX and markdown files.
-autocmd FileType tex,markdown :setlocal spell
+autocmd FileType tex,markdown setlocal spell
 
 " Use Python recommended indetation style.
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
