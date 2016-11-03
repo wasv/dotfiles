@@ -1,15 +1,21 @@
 " Basic settings
 syntax on
 color elflord
+
+" Spaces, not tabs
 set noautoindent
 set expandtab
 set shiftwidth=4
 set softtabstop=4
+
 set ruler
 set number
 set updatetime=500
 set backspace=indent,start,eol
 set modeline
+
+" Break at whitespace only. Not in middle of word.
+set nolist wrap linebreak breakat&vim
 
 " Plugin setup.
 call plug#begin('~/.vim/plugged')
@@ -25,7 +31,7 @@ Plug 'davidhalter/jedi-vim'
 call plug#end()
 
 " Enable spell checking on TeX and markdown files.
-autocmd FileType tex,markdown setlocal spell
+"autocmd FileType tex,markdown setlocal spell
 
 " Use Python recommended indetation style.
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
@@ -72,3 +78,8 @@ noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 " Printing
 set printheader=%{strftime(\"%c\",getftime(expand(\"%%\")))}%=%t
 set popt=syntax:n,bottom:36pt,top:36pt,right:36pt,left:36pt,number:y,paper:letter
+set printexpr=PrintFile(v:fname_in)
+function PrintFile(fname)
+    execute '!lpr' . (&printdevice == '' ? '' : ' -P' . &printdevice) . ' ' . a:fname
+    return v:shell_error
+endfunc
