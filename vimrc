@@ -8,6 +8,7 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 
+set showcmd
 set mouse=n
 set ruler
 set number
@@ -15,20 +16,25 @@ set updatetime=500
 set backspace=indent,start,eol
 set modeline
 
+" Don't highlight on search
+set nohlsearch
+
 " Break at whitespace only. Not in middle of word.
 set nolist wrap linebreak breakat&vim
 
 " Plugin setup.
 call plug#begin('~/.vim/plugged')
-"Plug 'artur-shaik/vim-javacomplete2'
+" Plug 'artur-shaik/vim-javacomplete2'
 Plug 'airblade/vim-rooter'
 Plug 'scrooloose/syntastic'
 " Plug 'vim-scripts/asmM6502.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'Shirk/vim-gas'
-Plug 'davidhalter/jedi-vim'
+" Plug 'Shirk/vim-gas'
+" Plug 'davidhalter/jedi-vim'
+Plug 'vitalk/vim-simple-todo'
 " Plug 'vim-scripts/Smart-Tabs'
 " Plug 'vim-airline/vim-airline'
+Plug 'bronson/vim-trailing-whitespace'
 call plug#end()
 
 " Enable spell checking on TeX and markdown files.
@@ -74,6 +80,8 @@ noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
 " Key mappings
+set timeoutlen=500
+let mapleader="\<C-Space>"
 " nmap <Tab> :bn!<CR>
 
 " Printing
