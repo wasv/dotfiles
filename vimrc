@@ -61,6 +61,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_java_javac_classpath = './src'
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': ['asm'] }
+let g:syntastic_vhdl_ghdl_args = '--ieee=synopsys'
 
 " ASM Setup
 let g:asmsyntax = 'gas'
