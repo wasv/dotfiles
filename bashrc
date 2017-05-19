@@ -1,3 +1,8 @@
+# -*- mode: sh -*-
+if [[ $- != *i* ]] ; then
+	# Shell is non-interactive.  Be done now!
+	return
+fi
 HISTSIZE=50000
 
 # Normal Colors
