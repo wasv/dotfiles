@@ -7,6 +7,9 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 cd $DIR
 ln -sfv $DIR/bashrc ~/.bashrc
 
+mv -v ~/.emacs.d ~/.emacs.d.bak
+ln -sfv $DIR/emacs.d ~/.emacs.d
+
 ln -sfv $DIR/vimrc ~/.vimrc
 mkdir -v ~/.config
 ln -sfv ~/.vim ~/.config/nvim
