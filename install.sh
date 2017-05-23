@@ -10,7 +10,7 @@ mv -v ~/.bashrc ~/.bashrc.bak
 ln -sv $DIR/bashrc ~/.bashrc
 
 mv -v ~/.emacs.d ~/.emacs.d.bak
-ln -sv $DIR/emacs.d ~/.emacs.d
+git clone git@github.com:wastevensv/emacs.d ~/.emacs.d
 
 mv -v ~/.vimrc ~/.vimrc.bak
 ln -sv $DIR/vimrc ~/.vimrc
