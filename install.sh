@@ -9,8 +9,13 @@ cd $DIR
 mv -v ~/.bashrc ~/.bashrc.bak
 ln -sv $DIR/bashrc ~/.bashrc
 
-mv -v ~/.emacs.d ~/.emacs.d.bak
-git clone git@github.com:wastevensv/emacs.d ~/.emacs.d
+
+read -p "Install emacs config? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    mv -v ~/.emacs.d ~/.emacs.d.bak
+    git clone git@github.com:wastevensv/emacs.d ~/.emacs.d
+fi
 
 mv -v ~/.vimrc ~/.vimrc.bak
 ln -sv $DIR/vimrc ~/.vimrc
@@ -22,3 +27,14 @@ ln -sfv ~/.vimrc ~/.config/nvim/init.vim
 mv -v ~/.gitconfig ~/.gitconfig.bak
 ln -sv $DIR/gitconfig ~/.gitconfig
 echo Installed dotfiles.
+
+for p in "$DIR/patch/*.patch"
+do
+    cat $p
+    read -p "Apply $p? " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+       git apply $p
+    fi
+done
+
