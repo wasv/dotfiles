@@ -1,15 +1,12 @@
 [user]
     name = William Stevens
     email = contact@wastevensv.com
-    signingkey = 346501FAB7B4DB6B
 [push]
     default = current
 [color]
     ui = true
 [core]
     autocrlf = input
-[commit]
-    gpgsign = true
 [branch]
     autosetuprebase = always
 [pull]
