@@ -15,9 +15,9 @@
 +[commit]
 +    gpgsign = true
 +[gpg]
-+    program = gpg2
++    program = gpg2-wrapper
 --- /dev/null
-+++ b/bin/gpg2
++++ b/bin/gpg2-wrapper
 @@ -0,0 +1,2 @@
 +#!/bin/sh
 +/usr/bin/gpg2 --batch --no-tty "$@"
