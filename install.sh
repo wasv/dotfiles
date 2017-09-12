@@ -6,24 +6,11 @@ mkdir -pv ~/.vim/autoload/
 wget -O ~/.vim/autoload/plug.vim \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-cd ~
-f=$DIR/bin-dir.patch
-cat "$f"
-read -p "Apply $f? " -n 1 -r
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    git apply "$f"
-    mv -v ~/.bin ~/.bin.bak
-    ln -sv $DIR/bin ~/.bin
-    chmod -v +x $DIR/bin/*
-fi
-cd -
-
 echo Installing dotfiles.
 read -p "Install emacs config? " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    mv -v ~/.emacs.d ~/.emacs.d.bak
+    [[ -L "~/.emacs.d" ]] && mv -v ~/.emacs.d ~/.emacs.d.bak
     git clone git@github.com:wastevensv/emacs.d ~/.emacs.d
 fi
 
@@ -37,19 +24,29 @@ do
     fi
 done
 
-mv -v ~/.bashrc ~/.bashrc.bak
-ln -sv $DIR/bashrc ~/.bashrc
+[[ -L "~/.bashrc" ]] && mv -v ~/.bashrc ~/.bashrc.bak
+ln -sfv $DIR/bashrc ~/.bashrc
 
-mv -v ~/.vimrc ~/.vimrc.bak
-ln -sv $DIR/vimrc ~/.vimrc
+[[ -L "~/.vimrc" ]] && mv -v ~/.vimrc ~/.vimrc.bak
+ln -sfv $DIR/vimrc ~/.vimrc
 
 mkdir -v ~/.config
 ln -sfv ~/.vim ~/.config/nvim
 ln -sfv ~/.vimrc ~/.config/nvim/init.vim
 
-mv -v ~/.gitconfig ~/.gitconfig.bak
-ln -sv $DIR/gitconfig ~/.gitconfig
+[[ -L "~/.gitconfig" ]] && mv -v ~/.gitconfig ~/.gitconfig.bak
+ln -sfv $DIR/gitconfig ~/.gitconfig
 
-mv -v ~/.ssh/config ~/.ssh/config.bak
-ln -sv $DIR/sshconfig ~/.ssh/config
+[[ -L "~/.ssh/config" ]] && mv -v ~/.ssh/config ~/.ssh/config.bak
+ln -sfv $DIR/sshconfig ~/.ssh/config
+
+read -p "Create ~/.bin?" -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    [[ -L "~/.bin" ]] || rm -v ~/.bin
+    [[ -L "~/.bin" ]] && mv -v ~/.bin ~/.bin.bak
+    ln -sfv $DIR/bin ~/.bin
+    chmod -v +x $DIR/bin/*
+fi
+
 echo Installed dotfiles.
