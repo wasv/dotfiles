@@ -25,6 +25,7 @@ done
 
 mv -v ~/.bin ~/.bin.bak
 ln -sv $DIR/bin ~/.bin
+chmod -v +x $DIR/bin/*
 
 mv -v ~/.bashrc ~/.bashrc.bak
 ln -sv $DIR/bashrc ~/.bashrc

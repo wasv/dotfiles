@@ -1,0 +1,10 @@
+--- /etc/skel/.profile	2016-11-15 14:06:17.000000000 -0500
++++ .profile	2017-09-12 10:39:24.534803052 -0400
+@@ -20,3 +20,7 @@
+ if [ -d "$HOME/bin" ] ; then
+     PATH="$HOME/bin:$PATH"
+ fi
++
++if [ -d "$HOME/.bin" ] ; then
++    PATH="$HOME/.bin:$PATH"
++fi
