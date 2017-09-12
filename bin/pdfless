@@ -1,0 +1,3 @@
+echo $1
+pdftotext -layout -eol unix -nopgbrk "$1" - | less
+
