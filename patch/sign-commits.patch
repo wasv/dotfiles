@@ -8,16 +8,9 @@
  [push]
      default = current
  [color]
-@@ -11,3 +12,7 @@
+@@ -11,3 +12,5 @@
      autosetuprebase = always
  [pull]
      rebase = true
 +[commit]
 +    gpgsign = true
-+[gpg]
-+    program = gpg2-wrapper
---- /dev/null
-+++ b/bin/gpg2-wrapper
-@@ -0,0 +1,2 @@
-+#!/bin/sh
-+/usr/bin/gpg2 --batch --no-tty "$@"
