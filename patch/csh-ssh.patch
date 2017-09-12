@@ -1,0 +1,10 @@
+--- a/sshconfig
++++ b/sshconfig
+@@ -4,3 +4,7 @@ Host github.com
+ Host bitbucket.org
+   User git
+   IdentityFile ~/.ssh/id_rsa
++Host *.csh
++  Hostname %h.rit.edu
++  User wasv
++  IdentityFile ~/.ssh/id_rsa

@@ -38,4 +38,7 @@ ln -sfv ~/.vimrc ~/.config/nvim/init.vim
 
 mv -v ~/.gitconfig ~/.gitconfig.bak
 ln -sv $DIR/gitconfig ~/.gitconfig
+
+mv -v ~/.ssh/config ~/.ssh/config.bak
+ln -sv $DIR/sshconfig ~/.ssh/config
 echo Installed dotfiles.
