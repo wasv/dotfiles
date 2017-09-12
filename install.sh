@@ -1,11 +1,25 @@
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+cd $DIR
+
 echo Installing dependencies.
 mkdir -pv ~/.vim/autoload/
 wget -O ~/.vim/autoload/plug.vim \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-echo Installing dotfiles.
-DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-cd $DIR
 
+cd ~
+f=$DIR/bin-dir.patch
+cat "$f"
+read -p "Apply $f? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    git apply "$f"
+    mv -v ~/.bin ~/.bin.bak
+    ln -sv $DIR/bin ~/.bin
+    chmod -v +x $DIR/bin/*
+fi
+cd -
+
+echo Installing dotfiles.
 read -p "Install emacs config? " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -22,10 +36,6 @@ do
        git apply "$f"
     fi
 done
-
-mv -v ~/.bin ~/.bin.bak
-ln -sv $DIR/bin ~/.bin
-chmod -v +x $DIR/bin/*
 
 mv -v ~/.bashrc ~/.bashrc.bak
 ln -sv $DIR/bashrc ~/.bashrc
