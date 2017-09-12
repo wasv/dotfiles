@@ -13,13 +13,13 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     git clone git@github.com:wastevensv/emacs.d ~/.emacs.d
 fi
 
-for p in "$DIR/patch/*.patch"
+for f in $DIR/patch/*.patch
 do
-    cat $p
-    read -p "Apply $p? " -n 1 -r
+    cat "$f"
+    read -p "Apply $f? " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-       git apply $p
+       git apply "$f"
     fi
 done
 
