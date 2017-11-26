@@ -27,6 +27,9 @@ done
 [[ -L "~/.bashrc" ]] && mv -v ~/.bashrc ~/.bashrc.bak
 ln -sfv $DIR/bashrc ~/.bashrc
 
+[[ -L "~/.zshrc" ]] && mv -v ~/.zshrc ~/.zshrc.bak
+ln -sfv $DIR/zshrc ~/.zshrc
+
 [[ -L "~/.vimrc" ]] && mv -v ~/.vimrc ~/.vimrc.bak
 ln -sfv $DIR/vimrc ~/.vimrc
 
