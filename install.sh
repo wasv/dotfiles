@@ -1,3 +1,4 @@
+#!/bin/bash
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 cd $DIR
 
@@ -33,14 +34,18 @@ ln -sfv $DIR/zshrc ~/.zshrc
 [[ -L "~/.vimrc" ]] && mv -v ~/.vimrc ~/.vimrc.bak
 ln -sfv $DIR/vimrc ~/.vimrc
 
-mkdir -v ~/.config
+mkdir -pv ~/.config
 ln -sfv ~/.vim ~/.config/nvim
 ln -sfv ~/.vimrc ~/.config/nvim/init.vim
 
-[[ -L "~/.gitconfig" ]] && mv -v ~/.gitconfig ~/.gitconfig.bak
+mkdir -pv ~/.config/fish
+[[ -L "~/.config/fish/config.fish" ]] && mv -v ~/.config/fish/config.fish{,.bak}
+ln -sfv $DIR/config.fish ~/.config/fish/config.fish
+
+[[ -L "~/.gitconfig" ]] && mv -v ~/.gitconfig{,.bak}
 ln -sfv $DIR/gitconfig ~/.gitconfig
 
-[[ -L "~/.ssh/config" ]] && mv -v ~/.ssh/config ~/.ssh/config.bak
+[[ -L "~/.ssh/config" ]] && mv -v ~/.ssh/config{,.bak}
 ln -sfv $DIR/sshconfig ~/.ssh/config
 
 read -p "Create ~/.bin?" -n 1 -r
