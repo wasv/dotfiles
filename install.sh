@@ -29,9 +29,6 @@ done
 [[ -L "~/.bashrc" ]] && mv -v ~/.bashrc ~/.bashrc.bak
 ln -sfv $DIR/bashrc ~/.bashrc
 
-[[ -L "~/.zshrc" ]] && mv -v ~/.zshrc ~/.zshrc.bak
-ln -sfv $DIR/zshrc ~/.zshrc
-
 [[ -L "~/.vimrc" ]] && mv -v ~/.vimrc ~/.vimrc.bak
 ln -sfv $DIR/vimrc ~/.vimrc
 
@@ -75,5 +72,8 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 fi
+
+[[ -L "~/.zshrc" ]] && mv -v ~/.zshrc ~/.zshrc.bak
+ln -sfv $DIR/zshrc ~/.zshrc
 
 echo Installed dotfiles.
