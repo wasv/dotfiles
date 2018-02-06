@@ -101,3 +101,4 @@ export PATH="$HOME/.bin:$PATH"
 
 source "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 RPROMPT="%D %T"
+alias ]="xdg-open"
