@@ -103,5 +103,7 @@ source "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 RPROMPT="%D %T"
 alias ]="xdg-open"
 
+[[ -f ~/.cargo/env ]] && source .cargo/env
+
 # Needed for emacs.
 [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
