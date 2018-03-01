@@ -102,6 +102,7 @@ export PATH="$HOME/.bin:$HOME/.local/bin:$PATH"
 RPROMPT="%D %T"
 
 alias ]="xdg-open"
+alias sl="echo Thats not ls!!"
 
 # Enables rust if available
 [[ -f ~/.cargo/env ]] && source .cargo/env
