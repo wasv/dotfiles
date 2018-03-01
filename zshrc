@@ -106,10 +106,10 @@ alias ]="xdg-open"
 # Enables rust if available
 [[ -f ~/.cargo/env ]] && source .cargo/env
 
-# Needed for emacs.
-[ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
 
 # Fixes GPG Agent issues
 if [ -n $SSH_CONNECTION ]; then
     export GPG_TTY=$(tty)
 fi
+# Needed for emacs.
+[ $TERM = "dumb" ] && unsetopt zle && PS1='%{$(pwd|grep --color=always /)%${#PWD}G%}$ '
