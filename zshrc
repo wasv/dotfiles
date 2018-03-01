@@ -99,11 +99,17 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR="vim"
 export PATH="$HOME/.bin:$HOME/.local/bin:$PATH"
 
-source "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 RPROMPT="%D %T"
+
 alias ]="xdg-open"
 
+# Enables rust if available
 [[ -f ~/.cargo/env ]] && source .cargo/env
 
 # Needed for emacs.
 [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
+
+# Fixes GPG Agent issues
+if [ -n $SSH_CONNECTION ]; then
+    export GPG_TTY=$(tty)
+fi
