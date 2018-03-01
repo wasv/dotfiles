@@ -105,8 +105,7 @@ alias ]="xdg-open"
 alias sl="echo Thats not ls!!"
 
 # Enables rust if available
-[[ -f ~/.cargo/env ]] && source .cargo/env
-
+[[ -f ~/.cargo/env ]] && source ~/.cargo/env
 
 # Fixes GPG Agent issues
 if [ -n $SSH_CONNECTION ]; then
