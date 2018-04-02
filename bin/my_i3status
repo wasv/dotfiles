@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# Prepends timer status to i3bar.
+
+i3status | (read line && echo "$line" && read line && echo "$line" && while :
+do
+    read line
+    REMAIN=$($HOME/.bin/tminus remain)
+    if [[ $REMAIN == "E" ]]; then
+        COLOR="#ffffff"
+        TDIFF="No Timer"
+    else
+        if [[ $REMAIN -le 0 ]]; then
+            COLOR="#ff0000"
+            TDIFF="Timer: EXPIRED"
+        elif [[ $REMAIN -le 900 ]]; then
+            COLOR="#ffff00"
+            TDIFF="Timer: "$(date -u -d "@$REMAIN" +"%H:%M:%S")
+        else
+            COLOR="#ffffff"
+            TDIFF="Timer: "$(date -u -d "@$REMAIN" +"%H:%M:%S")
+        fi
+    fi
+    echo "[{\"full_text\":\"${TDIFF}\",\"color\":\"${COLOR}\"},{${line#*\{}," || exit 1
+done)

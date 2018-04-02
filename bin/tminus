@@ -1,0 +1,50 @@
+#!/bin/sh
+
+TIMER_DIR=${XDG_CACHE_HOME:-$HOME/.cache}/tminus
+
+remain() {
+    if [ ! -f "$TIMER_DIR/end" ] ; then
+        mkdir -p $TIMER_DIR
+        echo "E"
+    else
+        echo $(date -d "@$((`cat $TIMER_DIR/end`-`date +"%s"`))" +"%s")
+    fi
+}
+
+
+check() {
+    TDIFF=$(remain)
+    if [[ $TDIFF == "E" ]]; then
+        echo "No Timer"
+        exit 1
+    fi
+    echo "Remaining:" `date -u -d "@$TDIFF" +"%H:%M:%S"`
+}
+
+begin() {
+    mkdir -p $TIMER_DIR
+    date +"%s" > $TIMER_DIR/start
+    date -d "$1" +"%s" > $TIMER_DIR/end
+}
+
+end() {
+    rm -r $TIMER_DIR
+}
+
+case $1 in
+    "begin")
+        begin "$2"
+        ;;
+    "check")
+        check
+        ;;
+    "remain")
+        remain
+        ;;
+    "end")
+        end
+        ;;
+    *)
+        echo "$0 (check)|(begin <date>)"
+        ;;
+esac
