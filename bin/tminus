@@ -22,18 +22,19 @@ check() {
 }
 
 begin() {
+    TDIFF=$@
     mkdir -p $TIMER_DIR
     date +"%s" > $TIMER_DIR/start
-    date -d "$1" +"%s" > $TIMER_DIR/end
+    date -d "$TDIFF" +"%s" > $TIMER_DIR/end
 }
 
 end() {
     rm -r $TIMER_DIR
 }
 
-case $1 in
+case "$1" in
     "begin" | "set")
-        begin "$2"
+        begin "${@:2}"
         ;;
     "check")
         check
@@ -44,7 +45,10 @@ case $1 in
     "end")
         end
         ;;
+    "")
+	check
+	;;
     *)
-        echo "$0 (check)|(begin <date>)"
+        begin "${@:1}"
         ;;
 esac
