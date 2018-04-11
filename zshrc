@@ -104,6 +104,14 @@ RPROMPT="%D %T"
 alias ]="xdg-open"
 alias sl="echo Thats not ls!!"
 
+taskset() {
+    echo $@ > $HOME/.cache/task
+}
+
+taskunset() {
+    rm $HOME/.cache/task
+}
+
 # Enables rust if available
 [[ -f ~/.cargo/env ]] && source ~/.cargo/env
 

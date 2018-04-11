@@ -5,6 +5,7 @@
 i3status | (read line && echo "$line" && read line && echo "$line" && while :
 do
     read line
+    LINE="{${line#*\{},"
     REMAIN=$($HOME/.bin/tminus remain)
     if [[ $REMAIN == "E" ]]; then
         COLOR="#ffffff"
@@ -21,5 +22,10 @@ do
             TDIFF="Timer: "$(date -u -d "@$REMAIN" +"%H:%M:%S")
         fi
     fi
-    echo "[{\"full_text\":\"${TDIFF}\",\"color\":\"${COLOR}\"},{${line#*\{}," || exit 1
+    LINE="{\"full_text\":\"${TDIFF}\",\"color\":\"${COLOR}\"},$LINE"
+    if [ -f $HOME/.cache/task ]; then
+       TASK=$(cat $HOME/.cache/task)
+       LINE="{\"full_text\":\"${TASK}\",\"color\":\"#ffffff\"},$LINE"
+    fi
+    echo "[$LINE" || exit 1
 done)

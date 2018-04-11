@@ -32,13 +32,13 @@ end() {
 }
 
 case $1 in
-    "begin")
+    "begin" | "set")
         begin "$2"
         ;;
     "check")
         check
         ;;
-    "remain")
+    "remain" | "get")
         remain
         ;;
     "end")
