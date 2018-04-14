@@ -104,11 +104,11 @@ RPROMPT="%D %T"
 alias ]="xdg-open"
 alias sl="echo Thats not ls!!"
 
-taskset() {
+task() {
     echo $@ > $HOME/.cache/task
 }
 
-taskunset() {
+endtask() {
     rm $HOME/.cache/task
 }
 
