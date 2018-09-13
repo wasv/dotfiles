@@ -95,7 +95,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
+export SPACESHIP_KUBECONTEXT_SHOW=false
 export EDITOR="vim"
 export PATH="$HOME/.bin:$HOME/.local/bin:$PATH"
 
