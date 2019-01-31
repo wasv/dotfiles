@@ -26,23 +26,26 @@ do
     fi
 done
 
-[[ -L "~/.bashrc" ]] && mv -v ~/.bashrc ~/.bashrc.bak
+[[ -L "~/.config/i3/config" ]] && mv -v ~/.config/i3/config{,.bak}
+ln -sfv $DIR/i3wm ~/.config/i3/config
+
+[[ -L "~/.config/compton.conf" ]] && mv -v ~/.config/compton.conf{,.bak}
+ln -sfv $DIR/compton.conf ~/.config/compton.conf
+
+[[ -L "~/.bashrc" ]] && mv -v ~/.bashrc{,.bak}
 ln -sfv $DIR/bashrc ~/.bashrc
 
-[[ -L "~/.vimrc" ]] && mv -v ~/.vimrc ~/.vimrc.bak
+[[ -L "~/.vimrc" ]] && mv -v ~/.vimrc{,.bak}
 ln -sfv $DIR/vimrc ~/.vimrc
 
 mkdir -pv ~/.config
 ln -sfv ~/.vim ~/.config/nvim
 ln -sfv ~/.vimrc ~/.config/nvim/init.vim
 
-mkdir -pv ~/.config/fish
-[[ -L "~/.config/fish/config.fish" ]] && mv -v ~/.config/fish/config.fish{,.bak}
-ln -sfv $DIR/config.fish ~/.config/fish/config.fish
-
 [[ -L "~/.gitconfig" ]] && mv -v ~/.gitconfig{,.bak}
 ln -sfv $DIR/gitconfig ~/.gitconfig
 
+mkdir -pv ~/.ssh
 [[ -L "~/.ssh/config" ]] && mv -v ~/.ssh/config{,.bak}
 ln -sfv $DIR/sshconfig ~/.ssh/config
 
