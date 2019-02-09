@@ -14,14 +14,21 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-export SPACESHIP_DOCKER_SHOW=false
-export SPACESHIP_KUBECONTEXT_SHOW=false
 export EDITOR="vim"
 export PATH="$HOME/.bin:$HOME/.local/bin:$PATH"
 
-export DOCKER_HOST=tcp://big-cheezit.csh.rit.edu:2376 DOCKER_TLS_VERIFY=1
+#export DOCKER_HOST=tcp://gpgdrop.labs.makesthings.xyz:2376 DOCKER_TLS_VERIFY=1
 
 RPROMPT="%D %T"
+
+SPACESHIP_BATTERY=false
+SPACESHIP_DOCKER_SHOW=false
+SPACESHIP_KUBECONTEXT_SHOW=false
+SPACESHIP_CHAR_SYMBOL="> "
+SPACESHIP_GIT_STATUS_DELETED="X"
+SPACESHIP_GIT_STATUS_AHEAD="^"
+SPACESHIP_JOBS_SYMBOL="*"
+SPACESHIP_GIT_STATUS_BEHIND=""
 
 alias ]="xdg-open"
 alias sl="echo Thats not ls!!"
