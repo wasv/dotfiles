@@ -4,7 +4,7 @@
  [user]
      name = William Stevens
      email = contact@wastevensv.com
-+    signingkey = 21A9CEB09A25B4F3
++    signingkey = CE292DA020417EA5
  [push]
      default = current
  [color]
