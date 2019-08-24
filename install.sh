@@ -9,12 +9,6 @@ wget -O ~/.vim/autoload/plug.vim \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 echo Installing dotfiles.
-read -p "Install emacs config? " -n 1 -r
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    [[ -L "~/.emacs.d" ]] && mv -v ~/.emacs.d ~/.emacs.d.bak
-    git clone git@github.com:wastevensv/emacs.d ~/.emacs.d
-fi
 
 for f in $DIR/patch/*.patch
 do
@@ -26,6 +20,7 @@ do
     fi
 done
 
+mkdir -pv "~/.config/i3"
 [[ -L "~/.config/i3/config" ]] && mv -v ~/.config/i3/config{,.bak}
 ln -sfv $DIR/i3wm ~/.config/i3/config
 
