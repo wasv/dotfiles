@@ -11,6 +11,8 @@ evaluate-commands %sh{
         Darwin)  copy="pbcopy"; paste="pbpaste" ;;
     esac
 
+    [ -n `which xclip` ] || exit
+
     printf "map global normal -docstring 'paste (after) from clipboard' p '!%s<ret>'\n" "$paste"
     printf "map global normal -docstring 'paste (before) from clipboard' P '<a-!>%s<ret>'\n" "$paste"
     printf "map global normal -docstring 'yank to clipboard' y '<a-|>%s<ret>:echo -markup %%{{Information}copied selection to X11 clipboard}<ret>'\n" "$copy"
