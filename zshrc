@@ -19,8 +19,10 @@ setopt appendhistory extendedglob
 unsetopt beep nomatch
 bindkey -e
 # End of lines configured by zsh-newuser-install
-bindkey "$key[Up]" history-beginning-search-backward # Up
-bindkey "$key[Down]" history-beginning-search-forward # Down
+bindkey "\eOA" history-beginning-search-backward # Up
+bindkey "\eOB" history-beginning-search-forward # Down
+bindkey "\e[A" history-beginning-search-backward # Up
+bindkey "\e[B" history-beginning-search-forward # Down
 
 PATH="$HOME/.local/bin:$PATH"
 
