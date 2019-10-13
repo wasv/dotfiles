@@ -2,12 +2,6 @@
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 cd $DIR
 
-echo Installing dependencies.
-
-mkdir -pv ~/.vim/autoload/
-wget -O ~/.vim/autoload/plug.vim \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
 echo Installing dotfiles.
 
 for f in $DIR/patch/*.patch
