@@ -25,7 +25,7 @@ bindkey "$key[Down]" history-beginning-search-forward # Down
 PATH="$HOME/.local/bin:$PATH"
 
 PROMPT="%F{magenta}%n%f at %F{yellow}%m%f in %F{cyan}%3~%f"$'\n'"%h %# "
-RPROMPT="=%? - %D %*"
+RPROMPT="\$?=%? - %D %*"
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
