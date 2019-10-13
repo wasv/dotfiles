@@ -1,34 +1,45 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+# The following lines were added by compinstall
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
+zstyle ':completion:*' completer _complete _ignored _prefix
+zstyle ':completion:*' match-original both
+zstyle :compinstall filename '/home/billie/.zshrc'
 
-plugins=(
-  git
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-)
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=100000
+SAVEHIST=$HISTSIZE
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
 
-source $ZSH/oh-my-zsh.sh
+setopt appendhistory extendedglob
+unsetopt beep nomatch
+bindkey -e
+# End of lines configured by zsh-newuser-install
 
-export EDITOR="vim"
-export PATH="$HOME/.bin:$HOME/.local/bin:$PATH"
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "OA" up-line-or-beginning-search # Up
+bindkey "OB" down-line-or-beginning-search # Down
 
-#export DOCKER_HOST=tcp://gpgdrop.labs.makesthings.xyz:2376 DOCKER_TLS_VERIFY=1
+PROMPT="%F{magenta}%n%f at %F{yellow}%m%f in %F{cyan}%3~%f"$'\n'"%h %# "
+RPROMPT="=%? - %D %*"
 
-RPROMPT="%D %T"
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
 
-SPACESHIP_BATTERY=false
-SPACESHIP_DOCKER_SHOW=false
-SPACESHIP_KUBECONTEXT_SHOW=false
-SPACESHIP_CHAR_SYMBOL="> "
-SPACESHIP_GIT_STATUS_DELETED="X"
-SPACESHIP_GIT_STATUS_AHEAD="^"
-SPACESHIP_JOBS_SYMBOL="*"
-SPACESHIP_GIT_STATUS_BEHIND=""
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
 
 alias ]="xdg-open"
 alias sl="echo Thats not ls!!"
@@ -46,4 +57,6 @@ fi
 [[ -f "$HOME/.myzshrc" ]] && source "$HOME/.myzshrc"
 
 # Needed for emacs.
-[ $TERM = "dumb" ] && unsetopt zle && PS1='%{$(pwd|grep --color=always /)%${#PWD}G%}$ '
+[ $TERM = "dumb" ] && unsetopt zle && PS1="%{$(pwd|grep --color=always /)%${#PWD}G%} %# " && return
+
+[ -z $TMUX ] && exec tmux -f $HOME/.tmux.conf

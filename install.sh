@@ -38,6 +38,9 @@ mkdir -pv ~/.ssh
 [[ -L "~/.ssh/config" ]] && mv -v ~/.ssh/config{,.bak}
 ln -sfv $DIR/sshconfig ~/.ssh/config
 
+[[ -L "~/.zshrc" ]] && mv -v ~/.zshrc ~/.zshrc.bak
+ln -sfv $DIR/zshrc ~/.zshrc
+
 read -p "Create ~/.bin?" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -52,20 +55,5 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     ln -sfv $DIR/bin ~/.bin
     chmod -v +x $DIR/bin/*
 fi
-
-read -p "Install oh-my-zsh? " -n 1 -r
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    wget -O /tmp/oh-my-zsh-install.sh \
-	 https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh
-    sh /tmp/oh-my-zsh-install.sh
-    git clone https://github.com/denysdovhan/spaceship-prompt.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt
-    ln -s ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt/spaceship.zsh-theme ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship.zsh-theme
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-fi
-
-[[ -L "~/.zshrc" ]] && mv -v ~/.zshrc ~/.zshrc.bak
-ln -sfv $DIR/zshrc ~/.zshrc
 
 echo Installed dotfiles.
