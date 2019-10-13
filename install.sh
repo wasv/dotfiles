@@ -41,19 +41,19 @@ ln -sfv $DIR/sshconfig ~/.ssh/config
 [[ -L "~/.zshrc" ]] && mv -v ~/.zshrc ~/.zshrc.bak
 ln -sfv $DIR/zshrc ~/.zshrc
 
-read -p "Create ~/.bin?" -n 1 -r
+read -p "Create ~/.local/bin?" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    if [[ -e ~/.bin ]]; then
-        TYPE=`stat ~/.bin --printf %F`
+    if [[ -e ~/.local/bin ]]; then
+        TYPE=`stat ~/.local/bin --printf %F`
         if [[ $TYPE == "symbolic link" ]]; then
-            rm -v ~/.bin
+            rm -v ~/.local/bin
         else
-            mv -v ~/.bin ~/.bin.bak
+            mv -v ~/.local/bin ~/.local/bin.bak
         fi
     fi
-    ln -sfv $DIR/bin ~/.bin
-    chmod -v +x $DIR/bin/*
+    ln -sfv $DIR/bin ~/.local/bin
+    chmod -v +x ~/.local/bin/*
 fi
 
 echo Installed dotfiles.

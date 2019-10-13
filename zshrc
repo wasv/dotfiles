@@ -1,3 +1,4 @@
+#!/bin/zsh
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _complete _ignored _prefix
@@ -25,6 +26,7 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "OA" up-line-or-beginning-search # Up
 bindkey "OB" down-line-or-beginning-search # Down
+PATH="$HOME/.local/bin:$PATH"
 
 PROMPT="%F{magenta}%n%f at %F{yellow}%m%f in %F{cyan}%3~%f"$'\n'"%h %# "
 RPROMPT="=%? - %D %*"
