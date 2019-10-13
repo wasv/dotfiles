@@ -1,5 +1,6 @@
 #!/bin/bash
 server_name=$(basename `pwd`)
+server_name=${server_name#.}
 socket_file=$(kak -l | grep $server_name)
 
 if [[ $socket_file == "" ]]; then        
