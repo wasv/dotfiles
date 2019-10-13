@@ -43,6 +43,7 @@ fi
 
 alias ]="xdg-open"
 alias sl="echo Thats not ls!!"
+alias dc="rlwrap dc"
 
 [[ -e "$XDG_RUNTIME_DIR/keyring/ssh" ]] && export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/keyring/ssh"
 
