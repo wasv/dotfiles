@@ -2,7 +2,7 @@
 # ─────────────────────────
 evaluate-commands %sh{
     case $(uname) in
-        Linux) copy="xclip -i"; paste="xclip -o" ;;
+        Linux) copy="xclip -sel clip -i"; paste="xclip -sel clip -o" ;;
         Darwin)  copy="pbcopy"; paste="pbpaste" ;;
     esac
 
@@ -16,3 +16,25 @@ evaluate-commands %sh{
 # Complete with Tab
 hook global InsertCompletionShow .* %{ map window insert <tab> <c-n>; map window insert <s-tab> <c-p> }
 hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap window insert <s-tab> <c-p> }
+
+# 4-Wide Tabs
+map global insert <tab> '<a-;><gt>'
+map global insert <s-tab> '<a-;><lt>'
+set global tabstop 4
+set global indentwidth 4
+
+hook global KakBegin .* %{
+    evaluate-commands %sh{
+        path="$PWD"
+        while [ "$path" != "$HOME" ] && [ "$path" != "/" ]; do
+            if [ -e "./tags" ]; then
+                printf "%s\n" "set-option -add current ctagsfiles %{$path/tags}"
+                printf "%s\n" "ctags-enable-autocomplete"
+                break
+            else
+                cd ..
+                path="$PWD"
+            fi
+        done
+    }
+}

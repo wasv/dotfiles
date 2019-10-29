@@ -27,7 +27,8 @@ bindkey "\e[B" history-beginning-search-forward # Down
 bindkey "\e[1~" beginning-of-line
 bindkey "\e[4~" end-of-line
 
-PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export MANPATH="$HOME/.local/share/man:$MANPATH"
 
 PROMPT="%F{magenta}%n%f at %F{yellow}%m%f in %F{cyan}%3~%f"$'\n'"%h %# "
 RPROMPT="\$?=%? - %D %*"
