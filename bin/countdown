@@ -1,0 +1,11 @@
+#!/bin/bash
+
+DEST=$(date --date="$*" +%s)
+NOW=$(date +%s)
+for i in $(seq $(($DEST-$NOW)) -1 1)
+do
+    clear
+    date -d@$i -u +%T | figlet -c
+    sleep 1
+done
+notify-send "Countdown complete"
