@@ -41,3 +41,5 @@ if [ -f ~/.mybashrc ]; then
 fi
 
 shopt -s extglob
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

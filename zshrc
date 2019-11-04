@@ -33,6 +33,8 @@ export MANPATH="$HOME/.local/share/man:$MANPATH"
 PROMPT="%F{magenta}%n%f at %F{yellow}%m%f in %F{cyan}%3~%f"$'\n'"%h %# "
 RPROMPT="\$?=%? - %D %*"
 
+export FZF_DEFAULT_OPTS="--preview='file {}' --preview-window down:1"
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -48,6 +50,9 @@ fi
 alias ]="xdg-open"
 alias sl="echo Thats not ls!!"
 alias dc="rlwrap dc"
+
+alias fcd='DEST=`find -type d | fzf` ; cd $DEST'
+
 
 [[ -e "$XDG_RUNTIME_DIR/keyring/ssh" ]] && export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/keyring/ssh"
 
@@ -65,3 +70,5 @@ fi
 [ $TERM = "dumb" ] && unsetopt zle && PS1="%{$(pwd|grep --color=always /)%${#PWD}G%} %# " && return
 
 [ -z $TMUX ] && [ -z $SSH_CONNECTION ] && which tmux && exec tmux -f $HOME/.tmux.conf
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
