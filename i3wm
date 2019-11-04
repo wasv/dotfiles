@@ -2,24 +2,29 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-exec bash $HOME/.autostart
+# exec bash $HOME/.autostart
 
 set $mod Mod4
 
 # Colors from Xresources
-set_from_resource $bg i3wm.background #000000
-set_from_resource $fg i3wm.foreground #FFFFFF
-set_from_resource $ia i3wm.inactive   #AAAAAA
-set_from_resource $rd i3wm.color1     #FF0000
-set_from_resource $ac i3wm.color4     #00FFFF
+# set_from_resource $bg i3wm.background #000000
+# set_from_resource $fg i3wm.foreground #FFFFFF
+# set_from_resource $ia i3wm.inactive   #AAAAAA
+# set_from_resource $rd i3wm.color1     #FF0000
+# set_from_resource $ac i3wm.color4     #00FFFF
+
+set $bg #000000
+set $fg #FFFFFF
+set $ia #444444
+set $ac #000000
 
 set $gap 5
 
 gaps outer $gap
 gaps inner $gap
 # set some nice colors      border     background  text
-client.focused              $ac        $ac         $bg
-client.unfocused            $ia        $bg         $ia
+client.focused              $ac        $ac         $fg
+client.unfocused            $ia        $ia         $fg
 client.focused_inactive     $fg        $bg         $fg
 client.urgent               $rd        $rd         $fg
 
@@ -27,10 +32,23 @@ client.urgent               $rd        $rd         $fg
 # is used in the bar {} block below.
 font pango:Source Code Pro 12
 
+# Don’t treat Plasma pop-ups as full-sized windows
+for_window [class="plasmashell"] floating enable
+
+# Don’t spawn an empty window for the Plasma Desktop
+for_window [title="Desktop — Plasma"] kill, floating enable, border none
+
+# Don’t let notifications and non-interactive pop-up windows steal focus
+no_focus [class="plasmashell" window_type="notification"]
+#no_focus [class="plasmashell" window_type="on_screen_display"]
+
 # Float mGBA
 for_window [class="mGBA"] floating enable
 for_window [class="mgba"] floating enable
-#for_window [tiling]  border pixel 3
+for_window [class="mame64"] floating enable
+for_window [title="QEMU.*"] floating enable
+for_window [class="GStreamer"] floating enable
+for_window [tiling]  border pixel 3
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -42,17 +60,16 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 
 # start common applications
 bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+e exec emacs
+bindsym $mod+e exec i3-sensible-terminal -e "tmux new-session kak"
 bindsym $mod+f exec thunar
 bindsym $mod+w exec firefox
-bindsym $mod+l exec "i3lock -e -c 88CCCC"
+#bindsym $mod+l exec "i3lock -e -c 88CCCC"
 
 # kill focused window
 bindsym $mod+Shift+c kill
 
 # start dmenu (a program launcher)
-bindsym $mod+r exec rofi -show drun
-bindsym $mod+Shift+r exec rofi -show run
+bindsym $mod+r exec albert show
 
 # Move focus
 bindsym $mod+Left focus left
@@ -127,9 +144,9 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # reload the configuration file
-bindsym $mod+Escape reload
+# bindsym $mod+Escape exec bash $HOME/.autostart
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+Escape restart
+bindsym $mod+Shift+Escape reload
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 

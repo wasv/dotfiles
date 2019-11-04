@@ -1,12 +1,15 @@
 #!/bin/bash
-server_name=$(basename `pwd`)
-server_name=${server_name#.}
-socket_file=$(kak -l | grep $server_name)
+
+if [[ -n KAK_SESSION ]]; then
+    KAK_SESSION=$(basename `pwd`)
+fi
+KAK_SESSION=${KAK_SESSION#.}
+socket_file=$(kak -l | grep $KAK_SESSION)
 
 if [[ $socket_file == "" ]]; then        
     # Create new kakoune daemon for current dir
-    kak -d -s $server_name
+    kak -d -s $KAK_SESSION
 fi
 
 # and run kakoune (with any arguments passed to the script)
-kak -c $server_name $@
+kak -c $KAK_SESSION $@

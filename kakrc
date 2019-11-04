@@ -39,3 +39,20 @@ hook global KakBegin .* %{
         done
     }
 }
+
+def dirlocal %{
+    try %{ source .kakrc.local }
+}
+
+def ide %{
+    rename-client main
+    set global jumpclient main
+
+    new rename-client tools
+    set global toolsclient tools
+
+    new rename-client docs
+    set global docsclient docs
+
+    dirlocal
+}
