@@ -14,6 +14,8 @@ evaluate-commands %sh{
 }
 
 map global user -docstring 'Enter fuzzy find mode' f ":fzf-mode<ret>"
+map global user -docstring 'Search for selected tag' c "<a-i>w:ctags-search<ret>"
+map global user -docstring 'Search for selected tag' * "<a-i>w*<ret>"
 # Complete with Tab
 hook global InsertCompletionShow .* %{ map window insert <tab> <c-n>; map window insert <s-tab> <c-p> }
 hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap window insert <s-tab> <c-p> }
