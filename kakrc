@@ -1,5 +1,17 @@
 # System clipboard handling
 # ─────────────────────────
+
+def -override -params 1 require-file %{
+    evaluate-commands %sh{
+        fpath="$HOME/.config/kak/rc/$1"
+        if [ -e "$fpath" ]; then
+            echo "source '$fpath'"
+        else
+            echo "echo -debug 'Could not find $fpath'"
+        fi
+    }
+}
+
 evaluate-commands %sh{
     case $(uname) in
         Linux) copy="xclip -sel clip -i"; paste="xclip -sel clip -o" ;;
@@ -19,6 +31,20 @@ map global user -docstring 'Search for selected tag' * "<a-i>w*<ret>"
 # Complete with Tab
 hook global InsertCompletionShow .* %{ map window insert <tab> <c-n>; map window insert <s-tab> <c-p> }
 hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap window insert <s-tab> <c-p> }
+
+require-file "filetree/filetree.kak"   # fzf file chooser
+require-file "fzf/rc/fzf.kak"   # fzf file chooser
+require-file "fzf/rc/modules/fzf-file.kak"   # fzf file chooser
+require-file "fzf/rc/modules/fzf-buffer.kak" # switching buffers with fzf
+require-file "fzf/rc/modules/fzf-search.kak" # search within file contents
+require-file "fzf/rc/modules/fzf-cd.kak"     # change server's working directory
+require-file "fzf/rc/modules/fzf-ctags.kak"  # search for tag in your project ctags file
+require-file "fzf/rc/modules/VCS/fzf-git.kak"  # search for tag in your project ctags file
+
+try %{
+    require-module fzf
+    set-option global fzf_file_command "find . \( -path '*/.svn*' -o -path '*/.git*' \) -prune -o -type f -print"
+}
 
 # 4-Wide Tabs
 map global insert <tab> '<a-;><gt>'
@@ -42,8 +68,16 @@ hook global KakBegin .* %{
     }
 }
 
-def dirlocal %{
-    try %{ source .kakrc.local }
+hook global BufCreate .*\.s(32|64|)$ %{
+    set-option buffer filetype gas
+}
+
+def rc-dirlocal %{
+    try %{ source "./.kakrc.local" }
+}
+
+def rc-userlocal %{
+    try %{ source "~/.config/kak/kakrc" }
 }
 
 def ide %{
@@ -56,5 +90,5 @@ def ide %{
     new rename-client docs
     set global docsclient docs
 
-    dirlocal
+    rc-dirlocal
 }
