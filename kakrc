@@ -2,7 +2,7 @@
 # ─────────────────────────
 
 def -override -params 1 require-file %{
-    evaluate-commands %sh{
+    try %sh{
         fpath="$HOME/.config/kak/rc/$1"
         if [ -e "$fpath" ]; then
             echo "source '$fpath'"
