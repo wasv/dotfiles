@@ -25,26 +25,29 @@ evaluate-commands %sh{
     printf "map global user -docstring 'replace from clipboard' R '|%s<ret>'\n" "$paste"
 }
 
-map global user -docstring 'Enter fuzzy find mode' f ":fzf-mode<ret>"
 map global user -docstring 'Search for selected tag' c "<a-i>w:ctags-search<ret>"
 map global user -docstring 'Search for selected tag' * "<a-i>w*<ret>"
 map global user -docstring 'Grep for selection' g "<a-i>w:grep -R <c-r>. .<ret>"
+
 # Complete with Tab
 hook global InsertCompletionShow .* %{ map window insert <tab> <c-n>; map window insert <s-tab> <c-p> }
 hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap window insert <s-tab> <c-p> }
 
-require-file "filetree/filetree.kak"   # fzf file chooser
-require-file "fzf/rc/fzf.kak"   # fzf file chooser
+require-file "filetree/filetree.kak"     # filetree listing
+require-file "hlinbrace/hlinbrace.kak"   # highlight in braces
+require-file "fzf/rc/fzf.kak"            # fuzzy finder
 require-file "fzf/rc/modules/fzf-file.kak"   # fzf file chooser
 require-file "fzf/rc/modules/fzf-buffer.kak" # switching buffers with fzf
 require-file "fzf/rc/modules/fzf-search.kak" # search within file contents
 require-file "fzf/rc/modules/fzf-cd.kak"     # change server's working directory
 require-file "fzf/rc/modules/fzf-ctags.kak"  # search for tag in your project ctags file
-require-file "fzf/rc/modules/VCS/fzf-git.kak"  # search for tag in your project ctags file
+require-file "fzf/rc/modules/fzf-vcs.kak"     # search for file in vcs index
+require-file "fzf/rc/modules/VCS/fzf-git.kak" # search for file in git index
 
 try %{
     require-module fzf
     set-option global fzf_file_command "find . \( -path '*/.svn*' -o -path '*/.git*' \) -prune -o -type f -print"
+    map global user -docstring 'Enter fuzzy find mode' f ":fzf-mode<ret>"
 }
 
 # 4-Wide Tabs
