@@ -1,16 +1,39 @@
+diff --git a/gitconfig b/gitconfig
+index 34dfd14..4c63b17 100644
 --- a/gitconfig
 +++ b/gitconfig
 @@ -1,6 +1,7 @@
  [user]
-     name = William Stevens
-     email = contact@wastevensv.com
+     name = Billy Stevens
+     email = contact@wasv.me
 +    signingkey = CE292DA020417EA5
  [push]
      default = current
  [color]
-@@ -11,3 +12,5 @@
+@@ -12,3 +13,5 @@
      autosetuprebase = always
  [pull]
      rebase = true
 +[commit]
 +    gpgsign = true
+diff --git a/patch/sign-commits.patch b/patch/sign-commits.patch
+index 4e30272..e69de29 100644
+--- a/patch/sign-commits.patch
++++ b/patch/sign-commits.patch
+@@ -1,16 +0,0 @@
+---- a/gitconfig
+-+++ b/gitconfig
+-@@ -1,6 +1,7 @@
+- [user]
+-     name = William Stevens
+-     email = contact@wastevensv.com
+-+    signingkey = CE292DA020417EA5
+- [push]
+-     default = current
+- [color]
+-@@ -11,3 +12,5 @@
+-     autosetuprebase = always
+- [pull]
+-     rebase = true
+-+[commit]
+-+    gpgsign = true
