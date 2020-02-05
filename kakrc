@@ -96,3 +96,10 @@ def ide %{
 
     rc-dirlocal
 }
+
+hook global WinCreate .* %{
+    evaluate-commands %sh{
+        [ -n $TERMINAL ] && [ -z $TMUX ] && [ -z $SSH_SESSION ] &&
+        printf 'set-option window termcmd "%s"\n' "$TERMINAL -e"
+    }
+}
