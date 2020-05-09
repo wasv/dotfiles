@@ -60,6 +60,7 @@ alias fcd='DEST=`find -type d | fzf` ; cd $DEST'
 
 
 [[ -e "$XDG_RUNTIME_DIR/keyring/ssh" ]] && export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/keyring/ssh"
+[[ -e "$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh" ]] && export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
 
 # Enables rust if available
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
