@@ -75,6 +75,6 @@ fi
 # Needed for emacs.
 [ $TERM = "dumb" ] && unsetopt zle && PS1="%{$(pwd|grep --color=always /)%${#PWD}G%} %# " && return
 
-[ -z $TMUX ] && [ -z $SSH_CONNECTION ] && which tmux && exec tmux -f $HOME/.tmux.conf
+# [ -z $TMUX ] && [ -z $SSH_CONNECTION ] && which tmux 2>/dev/null && exec tmux -f $HOME/.tmux.conf
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
