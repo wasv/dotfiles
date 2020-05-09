@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+SCREEN="LVDS-1"
+STYLUS="Wacom ISDv4 E6 Pen stylus"
+TOUCH="Wacom ISDv4 E6 Finger touch"
+ERASER="Wacom ISDv4 E6 Pen eraser"
+
+if [ -n "$1" ]; then
+  rotation=$1
+else
+  prevrotation=$(xrandr --query --verbose | grep "LVDS-1" | cut -d ' ' -f 6)
+  case $prevrotation in
+      normal) rotation=inverted;;
+      *) rotation=normal;;
+  esac
+fi
+
+case $rotation in
+inverted)
+  wacom_rotate=half
+  xrandr_rotate=inverted
+  ;;
+left)
+  wacom_rotate=cw
+  xrandr_rotate=left
+  ;;
+right)
+  wacom_rotate=ccw
+  xrandr_rotate=right
+  ;;
+*)
+  wacom_rotate=none
+  xrandr_rotate=normal
+  ;;
+esac
+
+xsetwacom --set "$STYLUS" Rotate $wacom_rotate
+xsetwacom --set "$TOUCH" Rotate $wacom_rotate
+xsetwacom --set "$ERASER" Rotate $wacom_rotate
+xrandr --output $SCREEN --rotate $xrandr_rotate
