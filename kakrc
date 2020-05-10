@@ -59,13 +59,13 @@ map global insert <s-tab> '<a-;><lt>'
 set global tabstop 4
 set global indentwidth 4
 
-hook global KakBegin .* %{
+def -override ctags-find %{
     evaluate-commands %sh{
         path="$PWD"
         while [ "$path" != "$HOME" ] && [ "$path" != "/" ]; do
             if [ -e "./tags" ]; then
-                printf "%s\n" "set-option -add current ctagsfiles %{$path/tags}"
-                printf "%s\n" "ctags-enable-autocomplete"
+                printf "%s\n" "set-option -add buffer ctagsfiles %{$path/tags}"
+                printf "echo %s" "tags file found."
                 break
             else
                 cd ..
@@ -73,6 +73,10 @@ hook global KakBegin .* %{
             fi
         done
     }
+}
+
+hook global BufCreate .*\.(c|cpp)$ %{
+    ctags-find
 }
 
 hook global BufCreate .*\.s(32|64|)$ %{
