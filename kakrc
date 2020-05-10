@@ -106,7 +106,8 @@ def ide %{
 
 hook global WinCreate .* %{
     evaluate-commands %sh{
-        [ -n $TERMINAL ] && [ -z $TMUX ] && [ -z $SSH_SESSION ] &&
-        printf 'set-option window termcmd "%s"\n' "$TERMINAL -e"
+        if [ ! -z "$TERMINAL" ] && [ -z "$TMUX" ] && [ -z "$SSH_SESSION" ]; then
+            printf 'set-option global termcmd "%s"\n' "$TERMINAL -H -e"
+        fi
     }
 }
