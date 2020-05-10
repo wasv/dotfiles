@@ -25,9 +25,12 @@ evaluate-commands %sh{
     printf "map global user -docstring 'replace from clipboard' R '|%s<ret>'\n" "$paste"
 }
 
-map global user -docstring 'Search for selected tag' c "<a-i>w:ctags-search<ret>"
-map global user -docstring 'Search for selected tag' * "<a-i>w*<ret>"
+map global user -docstring 'Search for selected tag' t "<a-i>w:ctags-search<ret>"
+map global user -docstring 'Search for selected word' * "<a-i>w*<ret>"
 map global user -docstring 'Grep for selection' g "<a-i>w:grep -R <c-r>. .<ret>"
+
+map global user -docstring 'Word count' c '%:echo %sh{wc -w <lt><lt><lt>"${kak_selection}"}<ret>'
+map global user -docstring 'Word wrap' w ":rmhl buffer/wrap<ret>:addhl buffer/wrap wrap -word -width 80<ret>"
 
 # Complete with Tab
 hook global InsertCompletionShow .* %{ map window insert <tab> <c-n>; map window insert <s-tab> <c-p> }
