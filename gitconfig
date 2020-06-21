@@ -8,6 +8,8 @@
 [core]
     autocrlf = input
     excludesfile = /home/billie/.gitignore-global
+[credential]
+    helper = libsecret
 [branch]
     autosetuprebase = always
 [pull]
