@@ -14,7 +14,7 @@ def -override -params 1 require-file %{
 
 evaluate-commands %sh{
     case $(uname) in
-        Linux) copy="xclip -sel clip -i"; paste="xclip -sel clip -o" ;;
+        Linux) copy="wl-copy"; paste="wl-paste" ;;
         Darwin)  copy="pbcopy"; paste="pbpaste" ;;
     esac
 
@@ -81,6 +81,12 @@ hook global BufCreate .*\.(c|cpp)$ %{
 
 hook global BufCreate .*\.s(32|64|)$ %{
     set-option buffer filetype gas
+}
+
+hook global WinSetOption filetype=rust %{
+    set window makecmd "cargo"
+    alias window cargo make
+    set window formatcmd "rustfmt"
 }
 
 def rc-dirlocal %{
