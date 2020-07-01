@@ -4,6 +4,8 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+exec gnome-keyring-daemon --unlock
+exec nextcloud
 for_window [tiling]  border pixel 3
 
 ### Variables
@@ -20,10 +22,10 @@ set $term gnome-terminal
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu wofi -I -i --show drun
+set $menu wofi -I -i --show
 set $lock swaylock -f -c 000000
-set $web flatpak run org.mozilla.firefox
-set $files nautilus
+set $web firefox
+set $files thunar
 
 ### Output configuration
 #
@@ -75,7 +77,8 @@ input type:keyboard {
     bindsym $mod+Shift+c kill
 
     # Start your launcher
-    bindsym $mod+r exec $menu
+    bindsym $mod+r exec $menu drun
+    bindsym $mod+Shift+r exec $menu run
     bindsym $mod+w exec $web
     bindsym $mod+f exec $files
     bindsym $mod+l exec $lock
@@ -91,7 +94,7 @@ input type:keyboard {
     bindsym $mod+Shift+Escape reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+q exec wlogout
 #
 # Moving around:
 #
@@ -153,7 +156,7 @@ input type:keyboard {
     bindsym $mod+space sticky toggle
 
     # Move focus to the parent container
-    bindsym $mod+a focus parent
+    bindsym $mod+p focus parent
 #
 # Scratchpad:
 #
@@ -183,7 +186,6 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Shift+r mode "resize"
 
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
