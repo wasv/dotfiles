@@ -38,14 +38,15 @@ hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap wi
 
 require-file "filetree/filetree.kak"     # filetree listing
 require-file "hlinbrace/hlinbrace.kak"   # highlight in braces
-require-file "fzf/rc/fzf.kak"            # fuzzy finder
-require-file "fzf/rc/modules/fzf-file.kak"   # fzf file chooser
-require-file "fzf/rc/modules/fzf-buffer.kak" # switching buffers with fzf
-require-file "fzf/rc/modules/fzf-search.kak" # search within file contents
-require-file "fzf/rc/modules/fzf-cd.kak"     # change server's working directory
-require-file "fzf/rc/modules/fzf-ctags.kak"  # search for tag in your project ctags file
-require-file "fzf/rc/modules/fzf-vcs.kak"     # search for file in vcs index
-require-file "fzf/rc/modules/VCS/fzf-git.kak" # search for file in git index
+require-file "fzf.kak/rc/fzf.kak"            # fuzzy finder
+require-file "fzf.kak/rc/modules/fzf-file.kak"   # fzf file chooser
+require-file "fzf.kak/rc/modules/fzf-buffer.kak" # switching buffers with fzf
+require-file "fzf.kak/rc/modules/fzf-search.kak" # search within file contents
+require-file "fzf.kak/rc/modules/fzf-cd.kak"     # change server's working directory
+require-file "fzf.kak/rc/modules/fzf-ctags.kak"  # search for tag in your project ctags file
+require-file "fzf.kak/rc/modules/fzf-vcs.kak"     # search for file in vcs index
+require-file "fzf.kak/rc/modules/VCS/fzf-git.kak" # search for file in git index
+eval %sh{kak-lsp --kakoune -s $kak_session}
 
 try %{
     require-module fzf
@@ -75,6 +76,8 @@ def -override ctags-find %{
     }
 }
 
+addhl global/number-lines number-lines -hlcursor
+
 hook global BufCreate .*\.(c|cpp)$ %{
     ctags-find
 }
@@ -83,10 +86,20 @@ hook global BufCreate .*\.s(32|64|)$ %{
     set-option buffer filetype gas
 }
 
+hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp) %{
+    lsp-enable-window
+    map window user -docstring 'Enable LSP user mode' l ":enter-user-mode lsp<ret>"
+}
+
 hook global WinSetOption filetype=rust %{
     set window makecmd "cargo"
     alias window cargo make
     set window formatcmd "rustfmt"
+}
+
+hook global WinSetOption filetype=python %{
+    set window makecmd "pipenv"
+    alias window pipenv make
 }
 
 def rc-dirlocal %{
