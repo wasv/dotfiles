@@ -52,7 +52,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-alias ]="xdg-open"
+function "]" {
+  xdg-open $@ & disown
+}
 alias sl="echo Thats not ls!!"
 alias dc="rlwrap dc"
 
@@ -60,7 +62,6 @@ alias fcd='DEST=`find -type d | fzf` ; cd $DEST'
 
 
 [[ -e "$XDG_RUNTIME_DIR/keyring/ssh" ]] && export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/keyring/ssh"
-[[ -e "$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh" ]] && export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
 
 # Enables rust if available
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
@@ -72,9 +73,9 @@ fi
 
 [[ -f "$HOME/.myzshrc" ]] && source "$HOME/.myzshrc"
 
-# Needed for emacs.
-[ $TERM = "dumb" ] && unsetopt zle && PS1="%{$(pwd|grep --color=always /)%${#PWD}G%} %# " && return
-
 # [ -z $TMUX ] && [ -z $SSH_CONNECTION ] && which tmux 2>/dev/null && exec tmux -f $HOME/.tmux.conf
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Needed for emacs.
+[ $TERM = "dumb" ] && unsetopt zle && PS1="%{$(pwd|grep --color=always /)%${#PWD}G%} %# " && return
