@@ -31,7 +31,7 @@ set $menu wofi -I -i --show
 
 set $lock swaylock -f -c 000000
 set $web firefox
-set $files thunar
+set $files caja
 
 ### Output configuration
 #
