@@ -68,6 +68,11 @@ input "1739:0:Synaptics_TM3276-031" {
 input type:keyboard {
     xkb_options caps:super
 }
+
+input "1133:50184:Logitech_USB_Trackball" {
+    scroll_button button8
+    scroll_method on_button_down
+}
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
@@ -202,6 +207,9 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+bindsym --whole-window button8 nop
+bindsym --whole-window button9 nop
 
 #
 # Status Bar:
