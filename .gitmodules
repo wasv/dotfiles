@@ -1,0 +1,6 @@
+[submodule "kak/rc/filetree"]
+	url = https://github.com/occivink/kakoune-filetree
+	path = kak/rc/filetree
+[submodule "kak/rc/fzf.kak"]
+	url = https://github.com/andreyorst/fzf.kak
+	path = kak/rc/fzf.kak
