@@ -1,0 +1,52 @@
+#!/bin/sh
+
+PATTERN=' *\[.\]'
+
+if [[ -n "$NOTEDIR" ]]; then
+    cd $NOTEDIR
+else
+    cd $HOME/notes/
+fi
+
+if [ "$1" == ":done" ]; then
+    shift
+    for entry in $@; do
+        note=$(echo $entry | cut -f1 -d:)
+        lnum=$(echo $entry | cut -f2 -d:)
+        [ -n "$note" ] && note=`date +%Y-%m-%d`.note
+
+        sed -i "${lnum}s/\[.\]/\[X\]/" $note
+    done
+fi
+
+if [ "$1" == ":add" ]; then
+    shift
+    note=`date +%Y-%m-%d`.note
+    echo [ ] $@ >> $note
+fi
+
+if [ "$1" == ":log" ]; then
+    shift
+    note="$1"
+    [ -n "$note" ] && note=`date +%Y-%m-%d`.note
+    cat $note
+fi
+
+if [ "$1" == ":cat" ]; then
+    shift
+    note=`date +%Y-%m-%d`.note
+
+    echo --- $note
+    cat $note
+
+    exit 0
+fi
+
+notes="$(find -name '*.note' -type f)"
+
+for note in $notes; do
+    if egrep -qn $PATTERN $note; then
+        echo --- $note
+        egrep -n $PATTERN $note
+    fi
+done
