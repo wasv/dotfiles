@@ -14,7 +14,7 @@ def -override -params 1 require-file %{
 
 evaluate-commands %sh{
     case $(uname) in
-        Linux) copy="wl-copy"; paste="wl-paste" ;;
+        Linux) copy="xclip -sel clip -i"; paste="xclip -sel clip -o" ;;
         Darwin)  copy="pbcopy"; paste="pbpaste" ;;
     esac
 
@@ -46,6 +46,7 @@ require-file "fzf.kak/rc/modules/fzf-cd.kak"     # change server's working direc
 require-file "fzf.kak/rc/modules/fzf-ctags.kak"  # search for tag in your project ctags file
 require-file "fzf.kak/rc/modules/fzf-vcs.kak"     # search for file in vcs index
 require-file "fzf.kak/rc/modules/VCS/fzf-git.kak" # search for file in git index
+require-file "gdb/gdb.kak" # gdb integration
 eval %sh{kak-lsp --kakoune -s $kak_session}
 
 try %{
@@ -60,12 +61,14 @@ map global insert <s-tab> '<a-;><lt>'
 set global tabstop 4
 set global indentwidth 4
 
+addhl global/number-lines number-lines -hlcursor
+
 def -override ctags-find %{
     evaluate-commands %sh{
         path="$PWD"
         while [ "$path" != "$HOME" ] && [ "$path" != "/" ]; do
             if [ -e "./tags" ]; then
-                printf "%s\n" "set-option -add buffer ctagsfiles %{$path/tags}"
+                printf "set-option -add buffer ctagsfile %s\n" "%{$path/tags}"
                 printf "echo %s" "tags file found."
                 break
             else
@@ -76,19 +79,13 @@ def -override ctags-find %{
     }
 }
 
-addhl global/number-lines number-lines -hlcursor
-
-hook global BufCreate .*\.(c|cpp)$ %{
-    ctags-find
-}
-
 hook global BufCreate .*\.s(32|64|)$ %{
     set-option buffer filetype gas
 }
 
 hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp) %{
     lsp-enable-window
-    map window user -docstring 'Enable LSP user mode' l ":enter-user-mode lsp<ret>"
+    map window user -docstring 'Enter LSP user mode' l ":enter-user-mode lsp<ret>"
 }
 
 hook global WinSetOption filetype=rust %{
@@ -111,16 +108,20 @@ def rc-userlocal %{
 }
 
 def ide %{
+    eval %sh{printf "rename-session $(basename $PWD | tr -d '.')"}
+
     rename-client main
-    set global jumpclient main
+
+    new rename-client preview
+    set global jumpclient preview
+    set global docsclient preview
 
     new rename-client tools
     set global toolsclient tools
+}
 
-    new rename-client docs
-    set global docsclient docs
-
-    rc-dirlocal
+def ranger %{
+    eval %sh{ printf "repl 'kak-ranger %s'" "$kak_session" }
 }
 
 hook global WinCreate .* %{

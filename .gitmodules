@@ -1,6 +1,9 @@
+[submodule "kak/rc/gdb"]
+	path = kak/rc/gdb
+	url = https://github.com/occivink/kakoune-gdb
 [submodule "kak/rc/filetree"]
-	url = https://github.com/occivink/kakoune-filetree
 	path = kak/rc/filetree
+	url = https://github.com/occivink/kakoune-filetree
 [submodule "kak/rc/fzf.kak"]
-	url = https://github.com/andreyorst/fzf.kak
 	path = kak/rc/fzf.kak
+	url = https://github.com/andreyorst/fzf.kak

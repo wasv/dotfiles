@@ -1,0 +1,3 @@
+#!/bin/sh
+
+EDITOR="kak -c $1" VISUAL="kitty @launch $EDITOR" ranger
