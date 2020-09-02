@@ -13,7 +13,7 @@ if [ "$1" == ":done" ]; then
     for entry in $@; do
         note=$(echo $entry | cut -f1 -d:)
         lnum=$(echo $entry | cut -f2 -d:)
-        [ -n "$note" ] && note=`date +%Y-%m-%d`.note
+        [ -n "$note" ] || note=`date +%Y-%m-%d`.note
 
         sed -i "${lnum}s/\[.\]/\[X\]/" $note
     done
@@ -28,13 +28,14 @@ fi
 if [ "$1" == ":log" ]; then
     shift
     note="$1"
-    [ -n "$note" ] && note=`date +%Y-%m-%d`.note
+    [ -n "$note" ] || note=`date +%Y-%m-%d`.note
     cat $note
 fi
 
 if [ "$1" == ":cat" ]; then
     shift
-    note=`date +%Y-%m-%d`.note
+    note="$1"
+    [ -n "$note" ] || note=`date +%Y-%m-%d`.note
 
     echo --- $note
     cat $note
