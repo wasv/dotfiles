@@ -57,6 +57,7 @@ function "]" {
 }
 alias sl="echo Thats not ls!!"
 alias dc="rlwrap dc"
+alias editor="$EDITOR"
 
 alias fcd='DEST=`find -type d | fzf` ; cd $DEST'
 
