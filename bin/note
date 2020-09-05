@@ -11,8 +11,8 @@ fi
 if [ "$1" == ":done" ]; then
     shift
     for entry in $@; do
-        note=$(echo $entry | cut -f1 -d:)
-        lnum=$(echo $entry | cut -f2 -d:)
+        note="$(echo $entry | cut -f1 -d:).note"
+        lnum="$(echo $entry | cut -f2 -d:)"
         [ -n "$note" ] || note=`date +%Y-%m-%d`.note
 
         sed -i "${lnum}s/\[.\]/\[X\]/" $note
@@ -27,18 +27,28 @@ fi
 
 if [ "$1" == ":log" ]; then
     shift
-    note="$1"
+    note="$1.note"
     [ -n "$note" ] || note=`date +%Y-%m-%d`.note
-    cat $note
+    echo $@ >> $note
 fi
 
 if [ "$1" == ":cat" ]; then
     shift
-    note="$1"
+    note="$1.note"
     [ -n "$note" ] || note=`date +%Y-%m-%d`.note
 
-    echo --- $note
+    echo --- ${note%.*}
     cat $note
+
+    exit 0
+fi
+
+if [ "$1" == ":edit" ]; then
+    shift
+    note="$1.note"
+    [ -n "$note" ] || note=`date +%Y-%m-%d`.note
+
+    $EDITOR $note
 
     exit 0
 fi
@@ -47,7 +57,7 @@ notes="$(find -name '*.note' -type f)"
 
 for note in $notes; do
     if egrep -qn $PATTERN $note; then
-        echo --- $note
+        echo --- ${note%.*}
         egrep -n $PATTERN $note
     fi
 done
