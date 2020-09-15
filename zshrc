@@ -60,6 +60,7 @@ alias dc="rlwrap dc"
 alias editor="$EDITOR"
 
 alias fcd='DEST=`find -type d | fzf` ; cd $DEST'
+alias ssh='TERM=xterm-256color ssh'
 
 [[ -e "$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh" ]] && export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
 
