@@ -21,3 +21,11 @@
     gpgsign = true
 [alias]
 	graph = log --graph --all --oneline
+[diff]
+    tool = kitty
+    guitool = kitty.gui
+[difftool]
+    prompt = false
+    trustExitCode = true
+[difftool "kitty"]
+    cmd = kitty +kitten diff $LOCAL $REMOTE
