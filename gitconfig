@@ -1,6 +1,7 @@
 [user]
     name = Billy Stevens
     email = contact@wasv.me
+    signingkey = CE292DA020417EA5
 [push]
     default = current
 [color]
@@ -14,3 +15,5 @@
     autosetuprebase = always
 [pull]
     rebase = true
+[commit]
+    gpgsign = true
