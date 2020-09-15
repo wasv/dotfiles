@@ -7,3 +7,5 @@ Host github.com
 Host bitbucket.org
   User git
   IdentityFile ~/.ssh/id_rsa
+
+Include config.local
