@@ -7,7 +7,7 @@
     ui = true
 [core]
     autocrlf = input
-    excludesfile = /home/billie/.gitignore-global
+    excludesfile = ~/.gitignore-global
 [credential]
     helper = libsecret
 [branch]
