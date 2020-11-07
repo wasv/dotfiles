@@ -7,3 +7,6 @@
 [submodule "kak/rc/fzf.kak"]
 	path = kak/rc/fzf.kak
 	url = https://github.com/andreyorst/fzf.kak
+[submodule "kak/rc/kakoune-extra-filetypes"]
+	path = kak/rc/extra-filetypes
+	url = https://github.com/kakoune-editor/kakoune-extra-filetypes

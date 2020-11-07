@@ -46,6 +46,7 @@ require-file "fzf.kak/rc/modules/fzf-cd.kak"     # change server's working direc
 require-file "fzf.kak/rc/modules/fzf-ctags.kak"  # search for tag in your project ctags file
 require-file "fzf.kak/rc/modules/fzf-vcs.kak"     # search for file in vcs index
 require-file "fzf.kak/rc/modules/VCS/fzf-git.kak" # search for file in git index
+require-file "extra-filetypes/rc/gemini.kak"
 require-file "gdb/gdb.kak" # gdb integration
 eval %sh{kak-lsp --kakoune -s $kak_session}
 
