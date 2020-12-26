@@ -2,6 +2,8 @@
     name = Billy Stevens
     email = contact@wasv.me
     signingkey = D9003447AC15DEA7
+[init]
+	defaultBranch = main
 [push]
     default = current
 [color]
