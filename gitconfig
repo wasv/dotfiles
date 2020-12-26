@@ -1,7 +1,7 @@
 [user]
     name = Billy Stevens
     email = contact@wasv.me
-    signingkey = CE292DA020417EA5
+    signingkey = D9003447AC15DEA7
 [push]
     default = current
 [color]
