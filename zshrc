@@ -35,7 +35,9 @@ bindkey "\e[F" end-of-line
 
 export MANPATH="$HOME/.local/share/man:"
 
-PROMPT="%F{magenta}%n%f at %F{yellow}%m%f in %F{cyan}%3~%f"$'\n'"%h %# "
+PROMPT="%F{magenta}%n%f at %F{yellow}%m%f in %F{cyan}%3~%f"
+which git-radar &>/dev/null && PROMPT="$PROMPT\$(git-radar --zsh --fetch)"
+PROMPT="$PROMPT"$'\n'"%h %# "
 RPROMPT="?=%? - %D %*"
 
 export FZF_DEFAULT_OPTS="--preview='file {}' --preview-window down:1"
