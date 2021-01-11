@@ -19,3 +19,5 @@
     rebase = true
 [commit]
     gpgsign = true
+[alias]
+	graph = log --graph --all --oneline
