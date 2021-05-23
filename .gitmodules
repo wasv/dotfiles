@@ -1,12 +1,6 @@
-[submodule "kak/rc/gdb"]
-	path = kak/rc/gdb
-	url = https://github.com/occivink/kakoune-gdb
-[submodule "kak/rc/filetree"]
-	path = kak/rc/filetree
-	url = https://github.com/occivink/kakoune-filetree
-[submodule "kak/rc/fzf.kak"]
-	path = kak/rc/fzf.kak
-	url = https://github.com/andreyorst/fzf.kak
-[submodule "kak/rc/kakoune-extra-filetypes"]
-	path = kak/rc/extra-filetypes
-	url = https://github.com/kakoune-editor/kakoune-extra-filetypes
+[submodule "zsh/nvm"]
+	path = zsh/nvm
+	url = https://github.com/lukechilds/zsh-nvm.git
+[submodule "zsh/git-radar"]
+	path = zsh/git-radar
+	url = https://github.com/michaeldfallen/git-radar
