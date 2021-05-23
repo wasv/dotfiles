@@ -1,0 +1,23 @@
+[user]
+    name = Billy Stevens
+    email = contact@wasv.me
+    signingkey = D9003447AC15DEA7
+[init]
+	defaultBranch = main
+[push]
+    default = current
+[color]
+    ui = true
+[core]
+    autocrlf = input
+    excludesfile = ~/.gitignore-global
+[credential]
+    helper = libsecret
+[branch]
+    autosetuprebase = always
+[pull]
+    rebase = true
+[commit]
+    gpgsign = true
+[alias]
+	graph = log --graph --all --oneline
