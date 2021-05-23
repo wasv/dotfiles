@@ -80,14 +80,14 @@ bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+c kill
 
 bindsym $mod+l exec loginctl lock-session
 bindsym $mod+w exec --no-startup-id firefox
-bindsym $mod+e exec --no-startup-id "nvim-qt"
+bindsym $mod+e exec --no-startup-id i3-sensible-editor
 bindsym $mod+f exec --no-startup-id "nautilus --new-window"
 
 # start dmenu (a program launcher)
