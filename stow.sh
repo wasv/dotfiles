@@ -8,15 +8,14 @@ PACKAGE="$1"
 TARGET="${2:-$HOME}"
 
 SOURCE="$DOTDIR/$PACKAGE"
-echo $SOURCE
 
 pushd $SOURCE &>/dev/null
 while read -u 10 dir; do
-    echo DIR: $dir
-    mkdir -pv $(dirname $TARGET/$dir)
+    echo DIR: $TARGET/$dir/
+    mkdir -pv $TARGET/$dir/
 done 10< <(find -type d -printf '%P\n')
 while read -u 10 file; do
-    echo FILE: $file
+    echo FILE: $TARGET/$file
     ln -siv $(realpath $file) $TARGET/$file
 done 10< <(find -type f -printf '%P\n')
 popd &>/dev/null
