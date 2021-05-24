@@ -168,7 +168,7 @@ noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 " Paste
 inoremap <silent> <C-S-V>  <C-R>+
 cnoremap <C-S-V> <C-R>+
-noremap <C-S-V> i<C-R>+<Esc>
+"noremap <C-S-V> i<C-R>+<Esc>
 
 " Leader Key {{{
 noremap <Leader>f :foldclose<CR>
