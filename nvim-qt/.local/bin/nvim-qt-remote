@@ -1,0 +1,16 @@
+#!/bin/env bash
+set -e
+[ -z "$1" ] && ( echo Usage: nvim-remote-qt \<hostname\> ; exit -1)
+
+mkdir -p $HOME/.cache/nvim_remotes 
+SOCK=$HOME/.cache/nvim_remotes/$1
+
+ssh -NTL /home/billie/.cache/nvim_remotes/$1:/run/user/1000/nvim/headless.sock $1 &
+SSHPID=$!
+
+function cleanup {
+    while kill -0 $NVIMQTPID 2>/dev/null; do sleep 1; done; kill $SSHPID; rm $SOCK
+}
+trap 'cleanup &' EXIT
+
+nvim-qt --nofork --server $SOCK 2>/dev/null & NVIMQTPID=$!
