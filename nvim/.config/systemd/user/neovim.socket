@@ -1,0 +1,10 @@
+[Unit]
+Description=Neovim Headless Socket
+
+[Socket]
+Accept=yes
+ListenStream=%t/nvim/headless.sock
+SocketMode=0660
+
+[Install]
+WantedBy=sockets.target

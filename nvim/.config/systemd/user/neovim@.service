@@ -1,0 +1,10 @@
+[Unit]
+Description=Neovim Headless Service
+Requires=neovim.socket
+After=neovim.socket
+
+[Service]
+Type=simple
+StandardInput=socket
+StandardOutput=socket
+ExecStart=/usr/bin/nvim --embed
