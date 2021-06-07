@@ -2,10 +2,10 @@
 set -e
 [ -z "$1" ] && ( echo Usage: nvim-remote-qt \<hostname\> ; exit -1)
 
-mkdir -p $HOME/.cache/nvim_remotes 
 SOCK=$HOME/.cache/nvim_remotes/$1
+mkdir -p $(dirname $SOCK)
 
-ssh -NTL /home/billie/.cache/nvim_remotes/$1:/run/user/1000/nvim/headless.sock $1 &
+ssh -NTL $SOCK:/run/user/1000/nvim/headless.sock $1 &
 SSHPID=$!
 
 function cleanup {
