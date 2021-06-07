@@ -24,6 +24,8 @@ smart_gaps on
 
 font xft:URWGothic-Book 11
 
+for_window [class="Qalculate-gtk"] floating enable, border 1
+for_window [class="gnuplot_qt"] floating enable, border normal
 for_window [class="PatchWindow"] floating enable, border normal
 for_window [class="PdWindow"] floating enable, border pixel 1
 for_window [class="HelpBrowser"] floating enable, border pixel 1
@@ -63,7 +65,6 @@ exec --no-startup-id pasystray
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id blueman-applet
 exec --no-startup-id kdeconnect-indicator
-exec --no-startup-id nextcloud
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -88,11 +89,13 @@ bindsym $mod+Shift+c kill
 bindsym $mod+l exec loginctl lock-session
 bindsym $mod+w exec --no-startup-id firefox
 bindsym $mod+e exec --no-startup-id i3-sensible-editor
-bindsym $mod+f exec --no-startup-id "nautilus --new-window"
+bindsym $mod+f exec --no-startup-id caja
 
 # start dmenu (a program launcher)
-bindsym $mod+r exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+Shift+r exec --no-startup-id dmenu_recency
+bindsym $mod+r exec "rofi -modi combi -combi-modi drun,window -show combi"
+bindsym $mod+Shift+r exec "rofi -modi run -show run"
+bindsym $mod+equal exec "rofi -modi calc -show calc"
+bindsym XF86Calculator exec "qalculate-gtk"
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -188,8 +191,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+Escape restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'Shutdown this computer?' -B 'Yes, poweroff' 'poweroff'"
-bindsym $mod+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'Shutdown?' -B 'Yes, shutdown.' 'poweroff'"
+bindsym $mod+q exec "i3-nagbar -t warning -m 'Logout?' -B 'Yes, logout.' 'loginctl terminate-session self'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
