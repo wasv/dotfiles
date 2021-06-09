@@ -45,6 +45,38 @@ set nocompatible
 filetype plugin on
 set completeopt=menuone,noselect
  
+" Lightline {{{
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'inactive': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'component_function': {
+      \   'filename': 'LightlineTruncatedFileName'
+      \ }
+      \ }
+
+function! LightlineTruncatedFileName()
+    let l:filePath = expand('%:')
+    if winwidth(0) > 120
+        return l:filePath
+    else
+        return pathshorten(l:filePath)
+    endif
+endfunction
+" }}}
+
 " Wildmenu {{{
 set wildmenu                " Autocomplete preview
 set wildmode=longest:full   " Complete to longest common completion
