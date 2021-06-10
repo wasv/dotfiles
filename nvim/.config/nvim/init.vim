@@ -25,6 +25,8 @@ Plug 'skanehira/preview-markdown.vim'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 
+Plug 'tpope/vim-fugitive'
+
 runtime! plug.d/*.vim
 call plug#end()
 
@@ -50,7 +52,7 @@ let g:lightline = {
       \ 'colorscheme': 'solarized',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified' ] ],
+      \             [ 'readonly', 'filename', 'git', 'modified' ] ],
       \   'right': [ [ 'lineinfo' ],
       \              [ 'percent' ],
       \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
@@ -63,7 +65,8 @@ let g:lightline = {
       \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
       \ 'component_function': {
-      \   'filename': 'LightlineTruncatedFileName'
+      \   'filename': 'LightlineTruncatedFileName',
+      \   'git': 'FugitiveStatusline'
       \ }
       \ }
 
