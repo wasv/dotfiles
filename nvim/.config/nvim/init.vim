@@ -26,6 +26,7 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sleuth'
 
 runtime! plug.d/*.vim
 call plug#end()
