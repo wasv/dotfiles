@@ -3,7 +3,7 @@
     email = contact@wasv.me
     signingkey = D9003447AC15DEA7
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [push]
     default = current
 [color]
@@ -20,4 +20,4 @@
 [commit]
     gpgsign = true
 [alias]
-	graph = log --graph --all --oneline
+    graph = log --graph --all --oneline
