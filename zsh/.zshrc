@@ -53,7 +53,6 @@ function "]" {
 }
 alias sl="echo Thats not ls!!"
 alias dc="rlwrap dc"
-alias editor="$EDITOR"
 
 # Enables rust if available
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
