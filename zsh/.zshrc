@@ -35,7 +35,7 @@ bindkey "\eOF" end-of-line
 bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
 
-PROMPT="%F{magenta}%n%f at %F{yellow}%m%f in %F{cyan}%3~%f"$'\n'"%h %# "
+PROMPT="%F{magenta}%n%f@%F{yellow}%m%f:%F{cyan}%2~%f"$'\n'"%h %# "
 RPROMPT="\$?=%? - %D %*"
 
 # enable color support of ls and also add handy aliases
