@@ -207,8 +207,8 @@ cnoremap <C-S-V> <C-R>+
 "noremap <C-S-V> i<C-R>+<Esc>
 
 " Leader Key {{{
-noremap <Leader>f :foldclose<CR>
-noremap <Leader>t :Vexplore<CR>
+autocmd FileType python nmap <buffer> <Leader>f :%!autopep8 -<CR>
+autocmd FileType python vmap <buffer> <Leader>f :!autopep8 -<CR>
 " }}}
 " }}}
 
