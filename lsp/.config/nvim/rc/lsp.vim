@@ -79,7 +79,7 @@ end
 
 lspconfig.glslls.setup{}
 
-local servers = { "rls", "clangd", "cmake", "pyls" }
+local servers = { "rls", "clangd", "cmake", "pylsp" }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup { on_attach = on_attach }
 end
