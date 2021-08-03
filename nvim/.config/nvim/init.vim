@@ -28,6 +28,8 @@ Plug 'rbgrouleff/bclose.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth'
 
+Plug 'https://gitlab.com/dbeniamine/todo.txt-vim'
+
 runtime! plug.d/*.vim
 call plug#end()
 
@@ -39,6 +41,9 @@ let g:rainbow_active = 1
 let g:cmake_build_dir_location = 'build'
 
 let g:ranger_replace_netrw = 1 
+
+let g:Todo_txt_prefix_creation_date=1
+let g:TodoTxtUseAbbrevInsertMode=1
 "}}}
 
 " Display {{{
@@ -165,6 +170,12 @@ autocmd FileType make setlocal noexpandtab shiftwidth=8 softtabstop=0
 autocmd FileType javascript,typescript,json,yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 " Spellcheck for text sort of files
 autocmd FileType latex,tex,markdown,md,text setlocal spell
+autocmd FileType todo setlocal nospell
+autocmd filetype todo setlocal omnifunc=todo#Complete
+autocmd filetype todo imap <buffer> + +<C-X><C-O>
+autocmd filetype todo imap <buffer> @ @<C-X><C-O>
+
+
 " Git Commit
 autocmd FileType gitcommit setlocal spell colorcolumn=51,73
 " Use Python recommended indetation style.
