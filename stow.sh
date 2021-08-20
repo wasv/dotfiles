@@ -5,17 +5,19 @@ if [ -z "$1" ]; then
 fi
 DOTDIR="$(dirname $(realpath -s $0))"
 PACKAGE="$1"
-TARGET="${2:-$HOME}"
+TARGET="$(realpath ${2:-$HOME})"
 
 SOURCE="$DOTDIR/$PACKAGE"
 
 pushd $SOURCE &>/dev/null
 while read -u 10 dir; do
-    echo DIR: $TARGET/$dir/
-    mkdir -pv $TARGET/$dir/
+    ddir=${dir/#dot-/.}
+    echo DIR: $TARGET/$ddir
+    mkdir -pv $TARGET/$ddir
 done 10< <(find -type d -printf '%P\n')
 while read -u 10 file; do
-    echo FILE: $TARGET/$file
-    ln -siv $(realpath $file) $TARGET/$file
+    dfile=${file/#dot-/.}
+    echo FILE: $TARGET/$dfile
+    ln -siv $(realpath $file) $TARGET/$dfile
 done 10< <(find -type f -printf '%P\n')
 popd &>/dev/null
