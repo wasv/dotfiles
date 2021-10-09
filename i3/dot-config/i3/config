@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-default_border pixel 1
+default_border pixel 2
 default_floating_border normal
 hide_edge_borders none
 smart_borders on
@@ -35,7 +35,7 @@ for_window [class="firefox" title="Picture-in-Picture"] floating enable, sticky 
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-client.focused          #556064 #556064 #80FFF9 #FDF6E3
+client.focused          #658084 #658084 #80FFF9 #FDF6E3
 client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
 client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
 client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
@@ -53,7 +53,7 @@ client.background       #2B2C2B
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -e -c 000000
 exec autorandr --change
-exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
 exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
 exec --no-startup-id xinput disable Synaptics\ TM3276-031
@@ -88,7 +88,8 @@ bindsym $mod+Shift+c kill
 
 bindsym $mod+l exec loginctl lock-session
 bindsym $mod+w exec --no-startup-id firefox
-bindsym $mod+e exec --no-startup-id i3-sensible-editor
+bindsym $mod+e exec --no-startup-id emacs
+bindsym $mod+Shift+e exec --no-startup-id nvim-qt
 bindsym $mod+f exec --no-startup-id caja
 
 # start dmenu (a program launcher)
