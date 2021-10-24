@@ -22,11 +22,11 @@ while read -u 10 file; do
             ;;
         unlink)
             rm -iv $TARGET/$dfile
-            cp -iv $(realpath $file) $TARGET/$dfile
+            cp -v $(realpath $file) $TARGET/$dfile
             ;;
         put)
             mkdir -pv $(dirname $TARGET/$dfile)
-            cp -biv $(realpath $file) $TARGET/$dfile
+            cp -bv $(realpath $file) $TARGET/$dfile
             ;;
         get)
             cp -v $TARGET/$dfile $(realpath $file)
