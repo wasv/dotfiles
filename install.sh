@@ -1,3 +1,4 @@
+#!env sh
 case $1 in
     put|get|link|unlink)
         ACTION="$1"
