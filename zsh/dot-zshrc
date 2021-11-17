@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _complete _ignored _prefix
@@ -39,7 +39,7 @@ PROMPT="%F{magenta}%n%f@%F{yellow}%m%f:%F{cyan}%2~%f"$'\n'"%h %# "
 RPROMPT="\$?=%? - %D %*"
 
 # enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
+if [ -x `which dircolors` ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
 

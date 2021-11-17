@@ -1,4 +1,4 @@
-#!env bash
+#!/usr/bin/env bash
 if [ -z "$1" ]; then
     echo 'Usage: ./stow.sh (put|get|link|unlink) <overlay> [target]'
     exit -1
