@@ -49,6 +49,7 @@ client.background       #2B2C2B
 
 exec --no-startup-id xinput disable Synaptics\ TM3276-031
 exec --no-startup-id nitrogen --set-zoom-fill ~/.config/background.jpg
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -e -c 000000
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
