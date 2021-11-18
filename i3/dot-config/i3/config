@@ -47,18 +47,8 @@ client.background       #2B2C2B
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xinput disable Synaptics\ TM3276-031
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id pasystray
-exec --no-startup-id blueman-applet
-exec --no-startup-id kdeconnect-indicator
+exec --no-startup-id nitrogen --set-zoom-fill ~/.config/background.jpg
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -227,4 +217,18 @@ mode "resize" {
 # finds out, if available)
 bar {
   status_command SCRIPT_DIR=~/.config/i3blocks i3blocks
+  i3bar_command i3bar --transparency
+  tray_output primary
+
+  colors {
+      background #ddddff88
+      statusline #111122
+      separator  #222222
+
+#                        border  backgr. text
+      focused_workspace  #ffffff #ffffff #000000
+      active_workspace   #ffffff #dddddd #000000
+      inactive_workspace #ffffff #bbbbbb #666666
+      urgent_workspace 	 #ffffff #ffffff #000000
+  }
 }
